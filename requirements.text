@@ -1,0 +1,10 @@
+torch torchvision torchaudio
+opencv-python
+pillow
+numpy
+albumentations
+scikit-image
+langchain langchain-core
+fastapi uvicorn python-multipart
+pycocotools
+tqdm
