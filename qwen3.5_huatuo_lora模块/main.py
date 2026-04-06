@@ -9,13 +9,13 @@ from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from trl import SFTTrainer, SFTConfig
 import torch
 
-# ================== 配置区 ==================
-model_name = "/data/huatuo_qwen3.5_9b/qwen3.5_9b"          # ← 如果你想用 Base 版改成 Qwen/Qwen3.5-9B-Base
-dataset_path = "/data/huatuo_qwen3.5_9b/data_propress/train_datasets"       # 上一步保存的路径
+
+model_name = "/data/huatuo_qwen3.5_9b/qwen3.5_9b"          
+dataset_path = "/data/huatuo_qwen3.5_9b/data_propress/train_datasets"      
 output_dir = "/data/huatuo_qwen3.5_9b/qwen3.5_9b_huatuo_qlora"
 
 max_seq_length = 2048
-batch_size = 2                          # 根据显存调整（24GB 建议 1-4）
+batch_size = 2                         
 gradient_accumulation = 8
 epochs = 2
 learning_rate = 2e-4
@@ -52,7 +52,7 @@ lora_config = LoraConfig(
     lora_dropout=0.05,
     bias="none",
     task_type="CAUSAL_LM",
-    target_modules=["q_proj","k_proj", "v_proj"]) # ,"o_proj", "gate_proj", "up_proj", "down_proj",
+    target_modules=["q_proj","k_proj", "v_proj"]) # qkv块lora
 
 model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
