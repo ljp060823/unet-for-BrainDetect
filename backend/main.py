@@ -1,4 +1,4 @@
-# backend/main.py （你已有 FastAPI，新增端点）
+# backend/main.py （FastAPI，新增端点）
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
 import os
