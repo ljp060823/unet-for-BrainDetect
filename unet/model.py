@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-class DSConv(nn.Module):  # Depthwise Separable Conv 优化
+class DSConv(nn.Module):  # Depthwise Separable Conv 
     def __init__(self, in_channels, out_channels, kernel_size=3, stride=1, padding=1):
         super().__init__()
         self.depthwise = nn.Conv2d(in_channels, in_channels, kernel_size, stride, padding, groups=in_channels, bias=False)
@@ -16,7 +16,7 @@ class DSConv(nn.Module):  # Depthwise Separable Conv 优化
         x = self.bn(x)
         return self.relu(x)
 
-class CBAM(nn.Module):  # 简单 Attention（Channel + Spatial）
+class CBAM(nn.Module):  # Attention（Channel + Spatial）
     def __init__(self, channels, reduction=16):
         super().__init__()
         self.channel_att = nn.Sequential(
